@@ -19,6 +19,15 @@ const port = process.env.PORT || 4000
 app.use(express.json(), cors())
 app.options('*', cors())
 
+// Add GET endpoint for health check
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Zoom Video SDK Auth Endpoint is running!',
+    status: 'OK',
+    timestamp: new Date().toISOString()
+  })
+})
+
 // Validations should match Zoom Video SDK's documentation:
 // https://developers.zoom.us/docs/video-sdk/auth/#payload
 const validator = {
